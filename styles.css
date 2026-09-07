@@ -1,0 +1,166 @@
+:root {
+  --ink: #22211f;
+  --muted: #66635d;
+  --line: #e4ddd2;
+  --paper: #faf7f1;
+  --panel: #ffffff;
+  --saffron: #b55318;
+  --saffron-dark: #873a12;
+  --maroon: #7d2232;
+  --teal: #13776f;
+  --gold: #c88d27;
+  --shadow: 0 18px 48px rgba(78, 54, 28, 0.12);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+
+.app-shell { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+.sidebar {
+  position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; gap: 28px;
+  padding: 28px; background: #fffdf9; border-right: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 12px; color: inherit; text-decoration: none; }
+.brand-mark {
+  display: grid; width: 44px; height: 44px; place-items: center; border-radius: 8px;
+  background: var(--saffron); color: #fff; font-family: "Noto Serif Devanagari", serif; font-size: 1.45rem; font-weight: 700;
+}
+.brand strong, .brand small { display: block; }
+.brand small, .eyebrow { color: var(--muted); font-size: 0.76rem; font-weight: 800; letter-spacing: 0; text-transform: uppercase; }
+.nav-list { display: grid; gap: 8px; }
+.nav-link { border-radius: 8px; color: var(--muted); padding: 12px 14px; text-decoration: none; font-weight: 800; }
+.nav-link.active, .nav-link:hover { background: #fff0e6; color: var(--saffron-dark); }
+.advisor-panel { margin-top: auto; border: 1px solid var(--line); border-radius: 8px; padding: 18px; background: #fff; }
+.advisor-panel h2 { margin: 8px 0; font-size: 1.05rem; }
+.advisor-panel p { color: var(--muted); line-height: 1.55; }
+
+.main-content { min-width: 0; padding: 28px; }
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 22px; }
+.topbar h1 { margin: 6px 0 0; font-size: clamp(2.1rem, 4vw, 4.4rem); line-height: 1; max-width: 920px; }
+.topbar-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.icon-button, .primary-button, .filter, .request-actions button, .approval-card button {
+  border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); min-height: 42px; padding: 0 14px; font-weight: 800;
+}
+.icon-button { width: 42px; padding: 0; }
+.primary-button, .approval-card button { border-color: var(--saffron); background: var(--saffron); color: #fff; }
+.primary-button:hover, .approval-card button:hover { background: var(--saffron-dark); }
+
+.hero-band {
+  display: grid; grid-template-columns: minmax(280px, 1fr) minmax(320px, 520px); gap: 28px; align-items: end;
+  min-height: 390px; padding: 32px; border-radius: 8px;
+  background: linear-gradient(120deg, rgba(69, 28, 14, 0.82), rgba(125, 34, 50, 0.62)), url("https://images.unsplash.com/photo-1604608894947-42a7063052d4?auto=format&fit=crop&w=1800&q=80") center/cover;
+  color: #fff; box-shadow: var(--shadow);
+}
+.hero-copy h2 { margin: 0; max-width: 760px; font-size: clamp(2rem, 4vw, 4.6rem); line-height: 1; }
+.hero-copy p { max-width: 660px; color: rgba(255,255,255,0.9); font-size: 1.05rem; line-height: 1.6; }
+.planner { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.planner label, .booking-form label, .profile-form label {
+  display: grid; gap: 8px; min-width: 0; border-radius: 8px; background: rgba(255,255,255,0.95); color: var(--ink);
+  padding: 14px; font-size: 0.85rem; font-weight: 800;
+}
+.planner select, .planner input, .booking-form select, .booking-form input, .profile-form input {
+  width: 100%; min-height: 34px; border: 0; color: var(--ink); background: transparent; font-weight: 700;
+}
+
+.metrics-grid, .auth-strip, .admin-grid, .requirements-list { display: grid; gap: 14px; margin: 22px 0; }
+.metrics-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.auth-strip, .requirements-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.metrics-grid article, .auth-strip article, .admin-grid article, .requirements-list article {
+  min-height: 104px; padding: 18px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel);
+}
+.metrics-grid span, .admin-grid span { display: block; font-size: 1.55rem; font-weight: 800; color: var(--maroon); }
+.metrics-grid p, .admin-grid p, .requirements-list p, .auth-strip h2 { margin: 8px 0 0; color: var(--muted); line-height: 1.5; }
+.auth-strip h2 { color: var(--ink); font-size: 1rem; }
+
+.workspace { display: grid; grid-template-columns: minmax(0, 1fr) 370px; gap: 22px; align-items: start; }
+.section-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+.section-heading h2, .admin-band h2 { margin: 4px 0 0; font-size: 1.45rem; }
+.compact { margin-bottom: 10px; }
+.filters { display: flex; gap: 8px; flex-wrap: wrap; }
+.filter.active { border-color: var(--teal); background: #eaf8f6; color: var(--teal); }
+.pandit-grid, .ritual-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.pandit-card, .ritual-card { display: grid; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); overflow: hidden; }
+.pandit-card.selected { border-color: var(--saffron); box-shadow: 0 0 0 3px rgba(181,83,24,0.12); }
+.pandit-photo { position: relative; min-height: 176px; background-size: cover; background-position: center 25%; }
+.pandit-photo span, .status-pill, .table-status {
+  border-radius: 999px; background: #eaf8f6; color: var(--teal); padding: 7px 10px; font-size: 0.76rem; font-weight: 800;
+}
+.pandit-photo span { position: absolute; left: 12px; top: 12px; background: rgba(255,255,255,0.95); }
+.status-pill.confirmed, .table-status.confirmed { background: #fff0e6; color: var(--saffron-dark); }
+.table-status.rejected { background: #fce8e8; color: #9b2c2c; }
+.pandit-body, .ritual-card { display: grid; gap: 12px; padding: 16px; }
+.pandit-body h3, .ritual-card h3, .requirements-list h3 { margin: 0; font-size: 1.05rem; }
+.pandit-body p, .ritual-card p { margin: 0; color: var(--muted); line-height: 1.5; }
+.pandit-facts, .ritual-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.pandit-facts span, .ritual-tags span { border-radius: 999px; background: #f4efe6; color: #574d42; padding: 7px 10px; font-size: 0.78rem; font-weight: 800; }
+.ritual-tags span { background: #f7f4ef; color: var(--muted); }
+.pandit-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.price { color: var(--saffron-dark); font-size: 1.15rem; font-weight: 800; }
+
+.booking-panel { position: sticky; top: 24px; border: 1px solid var(--line); border-radius: 8px; background: #fff; padding: 18px; box-shadow: var(--shadow); }
+.mini-profile { display: grid; grid-template-columns: 54px 1fr; gap: 12px; align-items: center; border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+.avatar { width: 54px; height: 54px; border-radius: 8px; background-size: cover; background-position: center; }
+.mini-profile strong, .mini-profile span { display: block; }
+.mini-profile span { margin-top: 4px; color: var(--muted); font-size: 0.86rem; line-height: 1.4; }
+.booking-form, .profile-form, .request-list, .approval-list { display: grid; gap: 10px; margin: 12px 0; }
+.booking-form label, .profile-form label { border: 1px solid var(--line); background: #fffdf9; }
+.booking-summary { display: grid; gap: 10px; border-top: 1px solid var(--line); padding: 14px 0; }
+.booking-summary div { display: flex; justify-content: space-between; gap: 12px; }
+.booking-summary span, .ritual-card dt { color: var(--muted); }
+.full { width: 100%; }
+.empty-state { grid-column: 1 / -1; display: grid; min-height: 220px; place-items: center; border: 1px dashed var(--line); border-radius: 8px; background: #fff; color: var(--muted); padding: 24px; text-align: center; }
+.compact-empty { min-height: 90px; }
+
+.ritual-band, .history-band, .desk-band, .operations-band, .admin-band, .docs-band { margin-top: 28px; }
+.ritual-card dl { display: grid; gap: 10px; margin: 0; }
+.ritual-card div { display: grid; gap: 3px; }
+.ritual-card dt, .ritual-card dd { margin: 0; }
+.ritual-card dd { font-weight: 700; line-height: 1.45; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+table { width: 100%; border-collapse: collapse; min-width: 720px; }
+th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--line); }
+th { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; }
+tr:last-child td { border-bottom: 0; }
+.desk-layout { display: grid; grid-template-columns: 340px 1fr; gap: 18px; align-items: start; }
+.profile-form, .request-card, .approval-card { border: 1px solid var(--line); border-radius: 8px; background: #fff; padding: 16px; }
+.request-card, .approval-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; }
+.approval-card { grid-template-columns: minmax(0, 1fr) auto auto; }
+.request-card span, .approval-card span { display: block; margin-top: 4px; color: var(--muted); font-size: 0.86rem; }
+.request-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.request-actions button:first-child { border-color: var(--teal); color: var(--teal); }
+.request-actions button:last-child { color: #9b2c2c; }
+.journey { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.journey article { border: 1px solid var(--line); border-radius: 8px; background: #fff; padding: 18px; }
+.journey strong { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 8px; background: #fff2dc; color: var(--gold); }
+.journey h3 { margin: 16px 0 6px; }
+.journey p { color: var(--muted); line-height: 1.5; margin: 0; }
+.admin-band { display: grid; grid-template-columns: minmax(240px, 0.55fr) 1fr; gap: 22px; align-items: start; border: 1px solid var(--line); border-radius: 8px; background: #fffdf9; padding: 22px; }
+.admin-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; }
+.approval-list { grid-column: 1 / -1; }
+.requirements-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+@media (max-width: 1120px) {
+  .app-shell, .workspace, .hero-band, .admin-band, .desk-layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; flex-direction: row; align-items: center; flex-wrap: wrap; }
+  .advisor-panel { margin-top: 0; flex-basis: 100%; }
+  .booking-panel { position: static; }
+}
+
+@media (max-width: 760px) {
+  .main-content, .sidebar { padding: 18px; }
+  .topbar { align-items: flex-start; flex-direction: column; }
+  .topbar h1 { font-size: 2.25rem; }
+  .topbar-actions { width: 100%; flex-wrap: wrap; }
+  .hero-band { min-height: 0; padding: 22px; }
+  .planner, .metrics-grid, .auth-strip, .pandit-grid, .ritual-grid, .journey, .admin-grid, .requirements-list { grid-template-columns: 1fr; }
+  .section-heading, .request-card, .approval-card { align-items: flex-start; grid-template-columns: 1fr; }
+}

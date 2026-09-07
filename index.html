@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PujaConnect | Online Pandit & Puja Booking</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Serif+Devanagari:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="PujaConnect home">
+          <span class="brand-mark">ॐ</span>
+          <span>
+            <strong>PujaConnect</strong>
+            <small>Verified puja services</small>
+          </span>
+        </a>
+
+        <nav class="nav-list">
+          <a class="nav-link active" href="#discover">Discover</a>
+          <a class="nav-link" href="#booking">Booking</a>
+          <a class="nav-link" href="#history">History</a>
+          <a class="nav-link" href="#pandit-desk">Pandit Desk</a>
+          <a class="nav-link" href="#admin">Admin</a>
+          <a class="nav-link" href="#docs">PRD</a>
+        </nav>
+
+        <section class="advisor-panel" aria-label="Booking promise">
+          <p class="eyebrow">Phase 1 Ready</p>
+          <h2>Discovery, booking, provider, and admin flows</h2>
+          <p>Verified profiles, ritual details, calendar-safe requests, admin approvals, and booking status tracking in one responsive demo.</p>
+        </section>
+      </aside>
+
+      <main class="main-content" id="top">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Online Pandit & Puja Booking Platform</p>
+            <h1>Book verified Pandits for every important ritual.</h1>
+          </div>
+          <div class="topbar-actions">
+            <button class="icon-button" type="button" title="Search" aria-label="Search">⌕</button>
+            <button class="icon-button" type="button" title="Notifications" aria-label="Notifications">•</button>
+            <button class="primary-button" type="button" id="startBookingButton">Start booking</button>
+          </div>
+        </header>
+
+        <section class="hero-band" aria-labelledby="plannerTitle">
+          <div class="hero-copy">
+            <h2 id="plannerTitle">Find the right Pandit by puja, city, language, and availability.</h2>
+            <p>
+              PujaConnect digitizes discovery and scheduling for Satyanarayan Katha, Griha Pravesh, Havan, Naamkaran, Mundan, and regional rituals.
+            </p>
+          </div>
+          <form class="planner" id="pujaPlanner">
+            <label>
+              City
+              <select id="citySelect">
+                <option value="all">All cities</option>
+                <option value="Bengaluru">Bengaluru</option>
+                <option value="Pune">Pune</option>
+                <option value="Delhi NCR">Delhi NCR</option>
+                <option value="Mumbai">Mumbai</option>
+              </select>
+            </label>
+            <label>
+              Puja
+              <select id="ritualSelect"></select>
+            </label>
+            <label>
+              Date
+              <input id="dateInput" type="date" />
+            </label>
+          </form>
+        </section>
+
+        <section class="metrics-grid" aria-label="Platform KPIs">
+          <article>
+            <span id="verifiedCount">0</span>
+            <p>Verified Pandits</p>
+          </article>
+          <article>
+            <span id="bookingRate">91%</span>
+            <p>Booking completion</p>
+          </article>
+          <article>
+            <span id="activeBookings">0</span>
+            <p>Active bookings</p>
+          </article>
+          <article>
+            <span id="cityCount">4</span>
+            <p>Launch cities</p>
+          </article>
+        </section>
+
+        <section class="auth-strip" aria-label="Account roles">
+          <article>
+            <p class="eyebrow">User</p>
+            <h2>Create an account, compare Pandits, and track every request.</h2>
+          </article>
+          <article>
+            <p class="eyebrow">Pandit</p>
+            <h2>Manage rituals, pricing, calendar slots, and incoming bookings.</h2>
+          </article>
+          <article>
+            <p class="eyebrow">Admin</p>
+            <h2>Approve providers, moderate reports, and monitor platform health.</h2>
+          </article>
+        </section>
+
+        <section class="workspace" id="discover">
+          <div class="catalog-area">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Discovery</p>
+                <h2>Compare verified Pandits</h2>
+              </div>
+              <div class="filters" role="group" aria-label="Pandit filters">
+                <button class="filter active" type="button" data-filter="all">All</button>
+                <button class="filter" type="button" data-filter="Satyanarayan Katha">Satyanarayan</button>
+                <button class="filter" type="button" data-filter="Griha Pravesh">Griha Pravesh</button>
+                <button class="filter" type="button" data-filter="Havan">Havan</button>
+                <button class="filter" type="button" data-filter="Naamkaran">Naamkaran</button>
+              </div>
+            </div>
+            <div class="pandit-grid" id="panditGrid"></div>
+          </div>
+
+          <aside class="booking-panel" id="booking" aria-label="Booking request">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Booking</p>
+                <h2>Request summary</h2>
+              </div>
+              <span class="status-pill" id="requestStatus">Draft</span>
+            </div>
+            <div class="selected-pandit" id="selectedPandit"></div>
+            <div class="booking-form">
+              <label>
+                Time slot
+                <select id="timeSelect">
+                  <option>07:30 AM</option>
+                  <option>09:00 AM</option>
+                  <option>11:30 AM</option>
+                  <option>05:30 PM</option>
+                </select>
+              </label>
+              <label>
+                Location type
+                <select id="locationTypeSelect">
+                  <option>Home puja</option>
+                  <option>Temple ceremony</option>
+                </select>
+              </label>
+              <label>
+                Address / temple name
+                <input id="addressInput" type="text" value="Indiranagar, Bengaluru" />
+              </label>
+            </div>
+            <div class="booking-summary">
+              <div>
+                <span>Ritual</span>
+                <strong id="summaryRitual">Satyanarayan Katha</strong>
+              </div>
+              <div>
+                <span>Estimated duration</span>
+                <strong id="summaryDuration">2.5 hours</strong>
+              </div>
+              <div>
+                <span>Transparent price</span>
+                <strong id="summaryPrice">₹0</strong>
+              </div>
+            </div>
+            <button class="primary-button full" type="button" id="sendRequestButton">Send booking request</button>
+          </aside>
+        </section>
+
+        <section class="ritual-band" aria-labelledby="ritualTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Ritual Catalog</p>
+              <h2 id="ritualTitle">Puja details and requirements</h2>
+            </div>
+          </div>
+          <div class="ritual-grid" id="ritualGrid"></div>
+        </section>
+
+        <section class="history-band" id="history">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">User Dashboard</p>
+              <h2>Booking history and status tracking</h2>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Booking ID</th>
+                  <th>Puja</th>
+                  <th>Pandit</th>
+                  <th>Date & Time</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="bookingHistory"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="desk-band" id="pandit-desk">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Pandit Desk</p>
+              <h2>Profile, pricing, and incoming requests</h2>
+            </div>
+          </div>
+          <div class="desk-layout">
+            <form class="profile-form" id="profileForm">
+              <label>
+                Display name
+                <input id="profileName" type="text" value="Pandit Raghav Tripathi" />
+              </label>
+              <label>
+                City
+                <input id="profileCity" type="text" value="Jaipur" />
+              </label>
+              <label>
+                Languages
+                <input id="profileLanguages" type="text" value="Hindi, Sanskrit, Rajasthani" />
+              </label>
+              <label>
+                Base ritual price
+                <input id="profilePrice" type="number" value="4100" min="500" step="100" />
+              </label>
+              <button class="primary-button full" type="submit">Submit profile for verification</button>
+            </form>
+            <div class="request-list" id="panditRequests"></div>
+          </div>
+        </section>
+
+        <section class="admin-band" id="admin">
+          <div>
+            <p class="eyebrow">Admin Dashboard</p>
+            <h2>Moderation and operational controls</h2>
+          </div>
+          <div class="admin-grid">
+            <article>
+              <span id="pendingPandits">0</span>
+              <p>Pandit profiles awaiting approval</p>
+            </article>
+            <article>
+              <span id="monitoredBookings">0</span>
+              <p>Bookings monitored this week</p>
+            </article>
+            <article>
+              <span>4</span>
+              <p>Open reports and feedback items</p>
+            </article>
+          </div>
+          <div class="approval-list" id="approvalList"></div>
+        </section>
+
+        <section class="operations-band">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Platform Workflow</p>
+              <h2>End-to-end service journey</h2>
+            </div>
+          </div>
+          <div class="journey">
+            <article>
+              <strong>1</strong>
+              <h3>Discover</h3>
+              <p>Search by city, ritual, language, experience, pricing, and verified status.</p>
+            </article>
+            <article>
+              <strong>2</strong>
+              <h3>Book</h3>
+              <p>Choose ritual, date, time, home or temple location, and submit a request.</p>
+            </article>
+            <article>
+              <strong>3</strong>
+              <h3>Confirm</h3>
+              <p>Pandits accept or reject requests, keeping calendars free from conflicts.</p>
+            </article>
+            <article>
+              <strong>4</strong>
+              <h3>Moderate</h3>
+              <p>Admins approve providers, manage reports, and update ritual categories.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="docs-band" id="docs">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">PRD Snapshot</p>
+              <h2>Requirements covered</h2>
+            </div>
+          </div>
+          <div class="requirements-list">
+            <article>
+              <h3>Core entities</h3>
+              <p>Users, Pandits, Rituals, Bookings, and Availability Schedules.</p>
+            </article>
+            <article>
+              <h3>Functional scope</h3>
+              <p>User booking, Pandit onboarding, availability, admin approvals, catalog management, and status tracking.</p>
+            </article>
+            <article>
+              <h3>Non-functional needs</h3>
+              <p>Fast responsive pages, secure role-based access model, reliable scheduling, and multi-city scalability.</p>
+            </article>
+            <article>
+              <h3>Future phases</h3>
+              <p>Online payments, donations, reminders, multi-language support, live streaming, astrology, and mobile apps.</p>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
